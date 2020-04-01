@@ -4,6 +4,12 @@
 		<title>Hello</title>
 	</head>
 	<body>
+
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out"/>
+		</form>
+		<hr>
+
 		<form method="post">
 			<input type="text" name="text" placeholder="some text">
 			<input type="text" name="tag" placeholder="tag">

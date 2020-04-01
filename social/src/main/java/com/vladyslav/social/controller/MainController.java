@@ -19,15 +19,14 @@ public class MainController {
         this.messageRepos = messageRepos;
     }
 
-    @GetMapping("/main")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World")
-                                                                String name, Model theModel) {
-        theModel.addAttribute("name", name);
+    @GetMapping
+    public String greeting(Model theModel) {
+
         return "greeting";
     }
 
-    @GetMapping
-    public String mainPage(Model theModel){
+    @GetMapping("/main")
+    public String mainPage(Model theModel) {
 
         Iterable<Message> messages = messageRepos.findAll();
 
@@ -36,10 +35,10 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping
-    public String addMessage(@RequestParam String text, String tag, Model theModel){
+    @PostMapping("/main")
+    public String addMessage(@RequestParam String text, String tag, Model theModel) {
 
-        Message message = new Message(text,tag);
+        Message message = new Message(text, tag);
         messageRepos.save(message);
         Iterable<Message> messages = messageRepos.findAll();
 
@@ -53,7 +52,7 @@ public class MainController {
 
         Iterable messages;
 
-        if(filter != null && !filter.isEmpty())
+        if (filter != null && !filter.isEmpty())
             messages = messageRepos.findByTag(filter);
         else
             messages = messageRepos.findAll();
