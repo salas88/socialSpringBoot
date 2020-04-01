@@ -23,18 +23,18 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registrationPage(User user) {
+    public String addUser(User user) {
 
-        User userFromDb = userRepos.findByUsername(user.getUserName());
+        User userFromDb = userRepos.findByUsername(user.getUsername());
 
         if(userFromDb != null) {
             return "redirect:/registration";
         }
 
-        user.setRoleSet(Collections.singleton(Role.USER));
         user.setActive(true);
-        userRepos.save(user);
+        user.setRoleSet(Collections.singleton(Role.USER));
 
+        userRepos.save(user);
         return "redirect:/login";
     }
 }

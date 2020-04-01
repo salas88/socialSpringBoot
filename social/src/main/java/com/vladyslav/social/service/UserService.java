@@ -13,7 +13,7 @@ public class UserService implements UserDetailsService {
     private UserRepos userRepos;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepos.findByUsername(username);
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userRepos.findByUsername(s);
     }
 }
